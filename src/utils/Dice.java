@@ -13,8 +13,3 @@ public class Dice {
 		return r.nextInt(max - min + 1) + min;
 	}
 }
-
-/*
- * 使用例
- * int num = Dice.get(1, 6);
- */

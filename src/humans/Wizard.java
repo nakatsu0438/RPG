@@ -1,21 +1,19 @@
+/*
+ * ヒットポイントの乱数範囲（120 ~ 180）
+ * 攻撃力の乱数囲（12 ~ 18）
+*/
+
 package humans;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import bases.Human;
+import utils.Dice;
 
 public class Wizard extends Human {
+	// 引数にname, weaponの2つだけを持つコンストラクタを定義
     public Wizard(String name, String weapon) {
-        // 親クラス（Human）のコンストラクタを呼び出してnameとweaponを設定
+    	// Humanクラスのコンストラクタを利用
         super(name, weapon);
-        
-        // ヒットポイントと攻撃力を乱数で初期化
-        this.setHp(generateRandom(120, 180));
-        this.setOffensive(generateRandom(12, 18));
-    }
-
-    private int generateRandom(int min, int max) {
-        // 指定された範囲内でランダムな整数を生成
-        return ThreadLocalRandom.current().nextInt(min, max + 1);
+        this.hp = Dice.get(120, 180);
+        this.offensive = Dice.get(12, 18);
     }
 }

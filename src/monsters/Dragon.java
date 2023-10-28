@@ -1,21 +1,19 @@
+/*
+ * ヒットポイントの乱数範囲（270 ~ 330）
+ * 攻撃力の乱数囲（12 ~ 18）
+*/
+
 package monsters;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import bases.Monster;
+import utils.Dice;
 
 public class Dragon extends Monster {
+	// 引数にname, weaponの2つだけを持つコンストラクタを定義
     public Dragon(String name, String weapon) {
-        // 親クラス（Monster）のコンストラクタを呼び出してnameとweaponを設定
+    	// Monsterクラスのコンストラクタを利用
         super(name, weapon);
-        
-        // ヒットポイントと攻撃力を乱数で初期化
-        this.setHp(generateRandom(270, 330));
-        this.setOffensive(generateRandom(12, 18));
-    }
-
-    private int generateRandom(int min, int max) {
-        // 指定された範囲内でランダムな整数を生成
-        return ThreadLocalRandom.current().nextInt(min, max + 1);
+        this.hp = Dice.get(270, 330);
+        this.offensive = Dice.get(12, 18);
     }
 }

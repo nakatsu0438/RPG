@@ -1,21 +1,19 @@
+/*
+ * ヒットポイントの乱数範囲（240 ~ 300）
+ * 攻撃力の乱数囲（17 ~ 23）
+*/
+
 package humans;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import bases.Human;
+import utils.Dice;
 
 public class Fighter extends Human {
+	// 引数にname, weaponの2つだけを持つコンストラクタを定義
     public Fighter(String name, String weapon) {
-        // 親クラス（Human）のコンストラクタを呼び出してnameとweaponを設定
+    	// Humanクラスのコンストラクタを利用
         super(name, weapon);
-        
-        // ヒットポイントと攻撃力を乱数で初期化
-        this.setHp(generateRandom(240, 300));
-        this.setOffensive(generateRandom(17, 23));
-    }
-
-    private int generateRandom(int min, int max) {
-        // 指定された範囲内でランダムな整数を生成
-        return ThreadLocalRandom.current().nextInt(min, max + 1);
+        this.hp = Dice.get(240, 300);
+        this.offensive = Dice.get(17, 23);
     }
 }
